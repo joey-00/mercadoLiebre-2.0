@@ -16,14 +16,13 @@ const controller = {
 			toThousand
 		})
 	},
-	search: (req, res) => {
-		const {keywords} = req.query;
-		const productsFiltered = products.filter(product => product.name.tolowerCase().includes(keywords.tolowerCase()) || product.description.tolowerCase().includes(keywords.tolowerCase()));
+	search: (req, res) => { 
+		const {keywords} = req.query
+		const productFiltered = products.filter(product=> product.name.toLowerCase().includes(keywords.toLowerCase()) || product.description.toLowerCase().includes(keywords.toLowerCase()))
 		return res.render('results',{
-			productsFiltered,
+			productFiltered,
 			toThousand,
 			keywords
-				
 		})
 	},
 }; 

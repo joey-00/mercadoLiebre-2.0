@@ -19,8 +19,8 @@
 			</div>
 
 			 
-			<% if (productsFiltered.length) { %>
-				<% productsFiltered.forEach(({id, image, price, discount, name}) => { %>
+			<% if (productFiltered.length) { %>
+				<% productFiltered.forEach(({id, image, price, discount, name}) => { %>
 					<%- include('./partials/product',{
 						id,
 						image,
