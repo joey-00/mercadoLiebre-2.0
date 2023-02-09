@@ -14,7 +14,7 @@
 				<h2 class="products-title">Todos los productos</h2>
 			</div>
 			<% products.forEach(({id, image, price, discount, name}) => { %>
-				<%- include('./partials/product',{
+				<%- include('/partials/product',{
 					id,
 					image,
 					price,

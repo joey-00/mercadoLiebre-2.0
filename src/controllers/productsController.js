@@ -4,7 +4,7 @@ const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const toThousand = n => n.tofixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	// Root - Show all products
@@ -18,20 +18,38 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		const id = req.params.id
-		const productDetail = products.find ((product) =>product.id === +id)
-		return res.send(productDetail)
+		const idParams = +req.params.id;
+		const product = products.find(product => product.id === idParams);
+		return res.render('detail',{
+			...product,
+			toThousand
+		})
 		// Do the magic
 	},
 
 	// Create - Form to create
 	create: (req, res) => {
+		return res.render('product-create-form')
 		// Do the magic
 	},
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		// Do the magic
+		const {name, discount, price, description, category} =req.body
+		const newProduct ={
+			id : products[products.length - 1].id + 1,
+			name : name.trim(),
+			description : description.trim(),
+			price : +price,
+			discount : +discount,
+			image : null,
+			category
+		}
+		
+		products.push(newProduct),
+		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3),'utf-8');
+
+		return res.redirect('/products')
 	},
 
 	// Update - Form to edit
