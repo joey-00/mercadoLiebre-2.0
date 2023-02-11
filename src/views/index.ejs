@@ -19,7 +19,7 @@
 			</div>
 			<!-- Show the "visited" products -->
 			<% visited.forEach(({id, image, price, discount, name}) => { %>
-				<%- include('./partials/product',{
+				<%- include('partials/product',{
 					id,
 					image,
 					price,
@@ -40,7 +40,7 @@
 			</div>
 			<!-- Show the "in-sale" products -->
 			<% inSale.forEach(({id, image, price, discount, name}) => { %>
-				<%- include('./partials/product',{
+				<%- include('partials/product',{
 					id,
 					image,
 					price,

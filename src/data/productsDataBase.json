@@ -146,37 +146,10 @@
    {
       "id": 17,
       "name": "celular",
-      "description": "",
+      "description": "rrwrhwrdj",
       "price": 60000,
       "discount": 12,
       "image": null,
       "category": "in-sale"
-   },
-   {
-      "id": 18,
-      "name": "celular",
-      "description": "",
-      "price": 60000,
-      "discount": 12,
-      "image": null,
-      "category": "in-sale"
-   },
-   {
-      "id": 19,
-      "name": "celular",
-      "description": "",
-      "price": 60000,
-      "discount": 12,
-      "image": null,
-      "category": "in-sale"
-   },
-   {
-      "id": 20,
-      "name": "",
-      "description": "",
-      "price": 0,
-      "discount": 0,
-      "image": null,
-      "category": ""
    }
 ]
