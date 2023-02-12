@@ -13,24 +13,25 @@ const controller = {
 			products,
 			toThousand
 		})
-		// Do the magic
 	},
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		const idParams = +req.params.id;
-		const product = products.find(product => product.id === idParams);
+
+		const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+		const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+		
+		const {id} = req.params;
+		const product = products.find(product => product.id === +id);
 		return res.render('detail',{
 			...product,
 			toThousand
 		})
-		// Do the magic
 	},
 
 	// Create - Form to create
 	create: (req, res) => {
 		return res.render('product-create-form')
-		// Do the magic
 	},
 	
 	// Create -  Method to store
@@ -54,16 +55,56 @@ const controller = {
 
 	// Update - Form to edit
 	edit: (req, res) => {
-		// Do the magic
+		const {id} = req.params;
+
+		const edit = products.find(product => product.id === +id)
+		return res.render('product-edit-form',{
+			toEdit : edit
+			/* ...product */
+		})
 	},
 	// Update - Method to update
 	update: (req, res) => {
-		// Do the magic
+		/* return res.send(
+			req.body
+		) */
+		const {id} = req.params;
+
+		const product = products.find(product => product.id === +id);
+		const {name, discount, price, description, category} = req.body;
+
+		const productModified = {
+			id : +id,
+			name : name.trim(),
+			description : description.trim(),
+			price : +price,
+			discount : +discount,
+			image : product.image, 
+			category
+		}
+
+		const productsModified = products.map(product => {
+			if(product.id === +id){
+				return productModified
+			}
+
+			return product
+		})
+		fs.writeFileSync(productsFilePath, JSON.stringify(productsModified, null, 3),'utf-8');
+
+		return res.redirect('/products/detail/' + id)
 	},
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		// Do the magic
+		/* return res.send(
+			req.params) */
+		const {id} = req.params;
+		const productsModified = products.filter(product =>{
+			return product.id !== +id})
+		fs.writeFileSync(productsFilePath, JSON.stringify(productsModified, null, 3),'utf-8');
+
+		return res.redirect('/')
 	}
 };
 
