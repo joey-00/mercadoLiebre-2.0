@@ -36,14 +36,14 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		const {name, discount, price, description, image, category} =req.body
+		const {name, discount, price, description, category} =req.body
 		const newProduct ={
 			id : products[products.length - 1].id + 1,
 			name : name.trim(),
 			description : description.trim(),
 			price : +price,
 			discount : +discount,
-			image : image,
+			image: req.file ? req.file.filename : 'default-image.png',
 			category
 		}
 		

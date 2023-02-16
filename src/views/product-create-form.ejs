@@ -14,30 +14,31 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<form  method="POST">
+			<form action="/products/create" method="POST" enctype="multipart/form-data">
 				<div class="row product-detail">
+					<!-- name -->
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
 						<input type="text" id="name" name="name" placeholder="Ej: Zapatillas Reebok" class="form-input">
 					</div>
+					<!-- precio -->
 					<div class="col-12 col-md-6">
 						<label for="price" class="form-label">Precio del producto:</label>
 						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">
 					</div>
+					<!-- descuebto -->
 					<div class="col-12 col-md-6">
 						<label for="discount" class="form-label">Descuento:</label>
 						<input type="text" id="discount" name="discount" placeholder="Ej: 15" class="form-input">
 					</div>
-					<div class="card-header">
-						<h5>Agregar producto con UNA imagen</h5>
+					<!-- cargar imagen -->
+					<div class="col-12 col-md-6">
+						<label for="image" class="form-label">Agregar imagen del producto</label>
+						<div>					
+							<input type="file" name="image" class="form-control">
+						</div>
 					</div>
-					<div class="card-body">
-						<form action="" method="POST" enctype="multipart/form-data">
-							<div class="mb-3">
-								<input type="file" name="image" class="form-control">
-							</div>
-						</form>
-					</div>
+					<!-- categoria -->
 					<div class="col-12 col-md-6">
 						<label for="category" class="form-label">Categoría:</label>
 						<select name="category" id="category" class="form-input">
@@ -46,10 +47,12 @@
 							<option value="visited">Últimos agregados</option>
 						</select>
 					</div>
+					<!-- descripcion -->
 					<div class="col-12">
 						<label for="description" class="form-label">Descipción:</label>
 						<textarea name="description" id="description" class="form-input"></textarea>
 					</div>
+					<!-- boton de guardado -->
 					<div class="col-12"> 
 						<button type="submit" class="buy-now-button">Guardar producto</button>
 					</div>
