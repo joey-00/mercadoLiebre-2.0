@@ -4,7 +4,7 @@ const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
-const toThousand = n => n.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	// Root - Show all products
@@ -36,14 +36,14 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		const {name, discount, price, description, category} =req.body
+		const {name, discount, price, description, image, category} =req.body
 		const newProduct ={
 			id : products[products.length - 1].id + 1,
 			name : name.trim(),
 			description : description.trim(),
 			price : +price,
 			discount : +discount,
-			image : null,
+			image : image,
 			category
 		}
 		
