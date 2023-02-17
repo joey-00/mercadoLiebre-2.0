@@ -79,7 +79,7 @@ const controller = {
 			description : description.trim(),
 			price : +price,
 			discount : +discount,
-			image : product.image, 
+			image : req.file ? req.file.originalname : product.image,
 			category
 		}
 
